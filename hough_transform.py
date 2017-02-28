@@ -11,8 +11,10 @@ import matplotlib.image as mpimg
 import numpy as np
 import cv2
 
+x = 'exit-ramp.jpg'
+
 # Read in and grayscale the image
-image = mpimg.imread('exit-ramp.jpg')
+image = mpimg.imread(x)
 gray = cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
 
 # Define a kernel size and apply Gaussian smoothing
@@ -40,11 +42,21 @@ lines = cv2.HoughLinesP(edges, rho, theta, threshold, np.array([]),
 # Iterate over the output "lines" and draw lines on the blank
 for line in lines:
     for x1,y1,x2,y2 in line:
-        cv2.line(line_image,(x1,y1),(x2,y2),(255,0,0),10)
+        x = cv2.line(line_image,(x1,y1),(x2,y2),(0,0,255),10)
+        print('line:', x1,y1,x2,y2)
+        plt.imshow(x)
+        plt.show()
 
+#y1 = line_image.shape[0] / 2 + 90
+#print('y1 = ',y1)
+#        
 # Create a "color" binary image to combine with line image
 color_edges = np.dstack((edges, edges, edges)) 
 
 # Draw the lines on the edge image
 combo = cv2.addWeighted(color_edges, 0.8, line_image, 1, 0) 
 plt.imshow(combo)
+plt.show()
+#plt.imshow(color_edges)
+#plt.show()
+

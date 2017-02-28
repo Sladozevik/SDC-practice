@@ -12,7 +12,7 @@ import numpy as np
 
 # read and convert to gray scale
 image = mpimg.imread('exit-ramp.jpg')
-plt.imshow(image)
+#plt.imshow(image)
 gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY) #gray scale conversion
 
 # define kernel size and Gaussian smoothin / blurring
